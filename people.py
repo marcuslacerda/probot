@@ -26,5 +26,8 @@ for people_id in string_input.split(",") :
 	print response.request.headers
 
 	parsed_body = html.fromstring(response.text)
-	for atag in  parsed_body.xpath('.//div[@class="user-projects"]//ul//li[1]//a') : # Get href attribute of all links 
-		print(atag.text_content())
+	elements = parsed_body.xpath('.//div[@class="user-projects"]//ul//li[1]//a') 
+	if elements:
+		project = elements[0]
+		print(project.text_content())
+

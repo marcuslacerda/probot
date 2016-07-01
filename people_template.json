@@ -1,0 +1,28 @@
+{
+	"template": "people*",
+	"mappings": {
+		"_default_": {
+			"_ttl" : { "enabled" : true, "default": "1w" },
+			"_all": { "enabled": false },
+			"properties": {
+				"@timestamp": {
+					"type": "date",
+					"format": "dateOptionalTime"
+				},
+				"role": {
+					"type": "string",
+					"index": "not_analyzed"
+				},	
+				"project": {
+					"type": "string",
+					"index": "not_analyzed"
+				},	
+
+				"name": {
+					"type": "string",
+					"index": "not_analyzed"
+				}						
+			}
+		}
+	}
+}
