@@ -29,7 +29,11 @@ def loadProjectFromHtml(login):
 
 
 ## Insert documentos to target elasticsearch
-es_target = Elasticsearch()
+es_target = Elasticsearch(
+    ['41ef204124da40f253e0872beb39e886.us-east-1.aws.found.io'],
+    http_auth=('admin', 'admin123'),
+    port=9200
+)
 
 for city_id in string_input.split(",") :
 	## Reference:
