@@ -50,7 +50,15 @@ techgallery
 			endorsements
 		}
 
+
 project
+    - setting
+		doc (id=flow) {
+			flow,
+			tower,
+			team =>  [array login],
+			stack => [array technologyname]
+		}    
 	- KPI
 		doc (id=contract_flow) {
 			contract_flow,
