@@ -58,7 +58,3 @@ project
 			event_date
 			metric  (pml, spdex, ???)
 		}
-
-
-
-
