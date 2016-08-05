@@ -73,4 +73,4 @@ for city_id in string_input.split(",") :
 		#print doc
 		## create index doc
 		res = es_target.index(index="people", doc_type="public", body=doc, id=hit[1])
-		print("Created documento ID %s para %s on %s" % (res['_id'], hit[0], project) )
+		print("Created documento ID %s para %s on %s" % (res['_id'], hit[0], project))
