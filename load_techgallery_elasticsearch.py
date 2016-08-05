@@ -61,10 +61,8 @@ for city_id in string_input.split(",") :
 			       'name' : hit[0],
 			       'login': hit[1],
 			       'role' : hit[4],
-			       'role.raw' : hit[4],
 			       'city' : hit[7],
 			       'technologyName': tech['technologyName'],
-			       'technologyName.raw': tech['technologyName'],
 			       'endorsementsCount' : tech['endorsementsCount'],
 			       'skillLevel' : tech['skillLevel'],
 			       'load_date': datetime.now()
