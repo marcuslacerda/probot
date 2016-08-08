@@ -1,25 +1,23 @@
-GET /people
-
-GET /people/public/mlacerda
-
-GET /people/_search?q:coach=rodrigosd
-
-GET /people/_search?
+GET /tc/_search
 {
-   "query": {
-      "match": {
-         "coach": "rodrigosd"
+  "size": 0,
+  "query": {
+    "query_string": {
+      "analyze_wildcard": true,
+      "query": "*"
+    }
+  },
+  "aggs": {
+    "2": {
+      "terms": {
+        "field": "login",
+        "size": 1200,
+        "order": {
+          "_count": "desc"
+        }
       }
-   }
-}
-
-GET /people/_search
-{
-   "query": {
-      "match": {
-         "name": "Henrique"
-      }
-   }
+    }
+  }
 }
 
 GET /techgallery/_search
@@ -60,4 +58,6 @@ GET /archboard/_search
 DELETE /archboard
 
 GET /project/_search
-    
+
+
+DELETE /tc

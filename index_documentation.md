@@ -54,15 +54,18 @@ techgallery
 project
     - setting
 		doc (id=flow) {
-			flow,
 			tower,
+			contract,
+			flow,
+			knowledge_map, # spreadsheet id 
 			team =>  [array login],
 			stack => [array technologyname]
 		}    
-	- KPI
+	- metric
 		doc (id=contract_flow) {
-			contract_flow,
 			tower,
+			contract,
+			flow,
 			event_date
 			metric  (pml, spdex, ???)
 		}
