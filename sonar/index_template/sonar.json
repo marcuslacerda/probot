@@ -1,0 +1,99 @@
+{
+    "mappings": {
+        "metric": {
+            "properties": {
+                "creationDate": {
+                    "format": "strict_date_optional_time||epoch_millis",
+                    "type": "date"
+                },
+                "date": {
+                    "format": "strict_date_optional_time||epoch_millis",
+                    "type": "date"
+                },
+                "id": {
+                    "type": "long"
+                },
+                "key": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "lang": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "lname": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "metrics": {
+                    "properties": {
+                        "comment_lines_density": {
+                            "type": "double"
+                        },
+                        "coverage": {
+                            "type": "double"
+                        },
+                        "duplicated_lines_density": {
+                            "type": "double"
+                        },
+                        "ncloc": {
+                            "type": "long"
+                        },
+                        "package_tangle_index": {
+                            "type": "long"
+                        },
+                        "public_documented_api_density": {
+                            "type": "long"
+                        },
+                        "test_errors": {
+                            "type": "long"
+                        },
+                        "test_execution_time": {
+                            "type": "long"
+                        },
+                        "test_failures": {
+                            "type": "long"
+                        },
+                        "test_success_density": {
+                            "type": "long"
+                        },
+                        "tests": {
+                            "type": "long"
+                        },
+                        "violations_density": {
+                            "type": "long"
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "qualifier": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "scope": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "version": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                }
+            }
+        }
+    },
+    "settings": {
+        "index": {
+            "creation_date": "1468413189254",
+            "index.mapping.coerce": true,
+            "number_of_replicas": "0",
+            "number_of_shards": "1",
+            "uuid": "gm1ZnQ67RQagFNtPiiLPpA",
+            "version": {
+                "created": "2030499"
+            }
+        }
+    }
+}

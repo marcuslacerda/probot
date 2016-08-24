@@ -1,0 +1,10 @@
+{
+    "sheetId":"1CVsVbl35iGdmZ51tTLgk7ZR5KZmC2rncrEFPwexNqD8",
+    "skillRange":"SPDex_Transpose!A2:H500",
+    "fields":["tech","tolerancia","meta","atual","peso","spdex_partial_value","spdex_final_value","spdex_partial_contribuition"],
+    "elasticsearch": {
+        "host":"trem.cit:9200",
+        "index":"knowledge_spdex",
+        "type":"spdex"
+    }
+}

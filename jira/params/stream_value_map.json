@@ -1,0 +1,45 @@
+{
+    "config": {
+        "component": "(issue.fields.components.length > 0) ? issue.fields.components[0].name: ''",
+        "descricao": "issue.fields.description",
+        "updated": "issue.fields.updated",
+        "created": "issue.fields.created",
+        "estimate": "issue.fields.timeoriginalestimate / 3600",
+        "jira": "issue.key",
+        "labels": "issue.fields.labels",
+        "remaining": "issue.fields.timeestimate / 3600",
+        "status": "issue.fields.status.name",
+        "summary": "issue.fields.summary",
+        "issueType": "issue.fields.issuetype.name",
+        "timespent": "issue.fields.timespent / 3600",
+        "assignee": "(issue.fields.assignee != null) ? issue.fields.assignee.displayName : 'Unassigned' "
+    },
+    "elasticsearch": {
+        "host":"172.19.33.130:9200",
+        "index":"value-stream-map",
+        "type":"jira"
+    },
+    "gateway": "https://wsgateway.cit.com.br",
+    "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Basic dGNhc3Ryb0BjaWFuZHQuY29tOlR1bDEwMGwxdjMxcjQ=",
+        "app_token": "guL1jw3wbA28"
+    },
+    "jql": "type = Problem AND project = \"GPVF - Legacy Optimization\" AND \"Client Related Issue ID\" !~ INTERNO ORDER BY component",
+    "keys": [
+        "jira",
+        "summary",
+        "component",
+        "labels",
+        "descricao",
+        "status",
+        "updated",
+        "created",
+        "estimate",
+        "remaining",
+        "timespent",
+        "assignee"
+    ],
+    "maxResults": 30,
+    "startAt": 475
+}

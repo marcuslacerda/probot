@@ -1,0 +1,8 @@
+{
+    "sonarApi":"http://gpvf-sonar.cit.com.br/api/resources",
+    "elasticsearch": {
+        "host":"trem.cit:9200",
+        "index":"sonar",
+        "type":"metric"
+    }
+}

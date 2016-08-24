@@ -1,0 +1,61 @@
+{
+    "mappings": {
+        "jira": {
+            "properties": {
+                "component": {
+                    "type": "string"
+                },
+                "descricao": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "duedate": {
+                    "format": "strict_date_optional_time||epoch_millis",
+                    "type": "date"
+                },
+                "estimate": {
+                    "type": "long"
+                },
+                "jira": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "labels": {
+                    "type": "string"
+                },
+                "process_date": {
+                    "format": "strict_date_optional_time||epoch_millis",
+                    "type": "date"
+                },
+                "remaining": {
+                    "type": "long"
+                },
+                "resposible": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "summary": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "timespent": {
+                    "type": "double"
+                }
+            }
+        }
+    },
+    "settings": {
+        "index": {
+            "creation_date": "1468869159097",
+            "number_of_replicas": "0",
+            "number_of_shards": "1",
+            "uuid": "eaCx3PkESoCInzpK2NjznA",
+            "version": {
+                "created": "2030499"
+            }
+        }
+    }
+}

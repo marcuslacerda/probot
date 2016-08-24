@@ -1,0 +1,46 @@
+{
+    "config": {
+        "component": "(issue.fields.components.length > 0) ? issue.fields.components[0].name: ''",
+        "descricao": "issue.fields.description",
+        "duedate": "issue.fields.duedate",
+        "created": "issue.fields.created",
+        "env": "issue.fields.environment",
+        "estimate": "issue.fields.timeoriginalestimate / 3600",
+        "jira": "issue.key",
+        "labels": "issue.fields.labels",
+        "remaining": "issue.fields.timeestimate / 3600",
+        "resposible": "(issue.fields.customfield_11716 != null) ? issue.fields.customfield_11716.displayName : 'unassigned'",
+        "status": "issue.fields.status.name",
+        "summary": "issue.fields.summary",
+        "timespent": "issue.fields.timespent / 3600"
+    },
+    "elasticsearch": {
+        "host":"trem.cit:9200",
+        "index":"tech_backlog",
+        "type":"jira"
+    },
+    "gateway": "https://wsgateway.cit.com.br",
+    "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Basic dGNhc3Ryb0BjaWFuZHQuY29tOlR1bDEwMGwxdjMxcjQ=",
+        "app_token": "guL1jw3wbA28"
+    },
+    "jql": "component = Arquitetura AND project = 'GPVF - Legacy Optimization' AND type = Story",
+    "keys": [
+        "jira",
+        "summary",
+        "component",
+        "env",
+        "labels",
+        "descricao",
+        "status",
+        "resposible",
+        "duedate",
+        "created",
+        "estimate",
+        "remaining",
+        "timespent"
+    ],
+    "maxResults": 200,
+    "startAt": 0
+}

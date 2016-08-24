@@ -1,0 +1,48 @@
+{
+    "mappings": {
+        "spdex": {
+            "properties": {
+                "atual": {
+                    "type": "string"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "peso": {
+                    "type": "double"
+                },
+                "process_date": {
+                    "format": "strict_date_optional_time||epoch_millis",
+                    "type": "date"
+                },
+                "spdex_final_value": {
+                    "type": "double"
+                },
+                "spdex_partial_contribuition": {
+                    "type": "double"
+                },
+                "spdex_partial_value": {
+                    "type": "double"
+                },
+                "tech": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "tolerancia": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "settings": {
+        "index": {
+            "creation_date": "1469457921163",
+            "number_of_replicas": "0",
+            "number_of_shards": "1",
+            "uuid": "DPHEDCyoR7uvfXGhakoKXA",
+            "version": {
+                "created": "2030499"
+            }
+        }
+    }
+}

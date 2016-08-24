@@ -1,0 +1,37 @@
+{
+  "mappings": {
+    "skill": {
+      "properties": {
+        "endorsementsCount": {
+          "type": "long"
+        },
+        "login": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "process_date": {
+          "format": "strict_date_optional_time||epoch_millis",
+          "type": "date"
+        },
+        "skillLevel": {
+          "type": "long"
+        },
+        "tech": {
+          "type": "string",
+          "index": "not_analyzed"
+        }
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "creation_date": "1469448293802",
+      "number_of_replicas": "0",
+      "number_of_shards": "1",
+      "uuid": "5nMmyWLPTuG0F6dPEZcQaQ",
+      "version": {
+        "created": "2030499"
+      }
+    }
+  }
+}

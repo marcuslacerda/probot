@@ -1,0 +1,10 @@
+{
+    "sheetId":"1CVsVbl35iGdmZ51tTLgk7ZR5KZmC2rncrEFPwexNqD8",
+    "skillRange":"Skills!B2:E500",
+    "fields":["login", "tech", "skillLevel", "endorsementsCount"],
+    "elasticsearch": {
+        "host":"trem.cit:9200",
+        "index":"knowledge_map",
+        "type":"skill"
+    }
+}

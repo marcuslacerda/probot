@@ -1,0 +1,10 @@
+{
+    "sheetId":"1crCPc98EmTMPHTBSvG5UDy8UU72NwF_nXJ6rQxKvC3Y",
+    "skillRange":"TC_Report!A2:K30",
+    "fields":["technology","tower","contract","flow","gap","weight","necessity","requirement","relevancy","skill_index","achieve"],
+    "elasticsearch": {
+        "host":"104.197.92.45:9200",
+        "index":"knowledge",
+        "type":"spdex"
+    }
+}
