@@ -1,0 +1,22 @@
+{
+	"template": "people",
+	"mappings": {
+		"_default_": {
+			"_all": { "enabled": false },
+			"properties": {
+				"@timestamp": {
+					"type": "date",
+					"format": "dateOptionalTime"
+				},
+				"role": {
+					"type": "string",
+					"index": "not_analyzed"
+				},	
+				"contract": {
+					"type": "string",
+					"index": "not_analyzed"
+				}
+			}
+		}
+	}
+}
