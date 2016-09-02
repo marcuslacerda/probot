@@ -19,9 +19,8 @@ def loadPeople(type, *login):
 
 ## Insert documentos to target elasticsearch
 es_target = Elasticsearch(
-    ['http://104.197.92.45:9200'],
-    http_auth=('admin', 'admin123'),
-    port=9200
+    ['http://4c9752a7100ba7cb95034a4d458e17f6.sa-east-1.aws.found.io:9200'],
+    http_auth=('admin', 'admin')
 )
 
 for city_id in string_input.split(",") :
