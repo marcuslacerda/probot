@@ -8,7 +8,7 @@ from lxml import html
 
 username = raw_input("Enter Username for basic auth. Default mlacerda => ") or "mlacerda"
 password = raw_input("Enter Password. => ")
-string_input = raw_input("Enter list of cities ids. Default BH,CPS,SP,RJ,HOU,NJ,NGB,ATL,CAL => ") or "BH,CPS,SP,RJ,HOU,NJ,NGB,ATL,CAL"
+string_input = raw_input("Enter list of cities ids. Default BH,CPS,SP,RJ,HOU,NJ,NGB,ATL,CAL,TOK => ") or "BH,CPS,SP,RJ,HOU,NJ,NGB,ATL,CAL,TOK"
 
 def loadPeople(type, *login):
 	try:
