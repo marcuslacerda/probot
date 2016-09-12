@@ -56,7 +56,7 @@ for item in findPeople():
 		       'name' : people['name'],		       
 		       'role' : people['role'],
 		       'city' : people['city'],
-		       'contract' : people['contract'],
+		       'project' : people['contract'],
 		       'technologyName': tech['technologyName'],
 		       'endorsementsCount' : tech['endorsementsCount'],
 		       'skillLevel' : tech['skillLevel']
