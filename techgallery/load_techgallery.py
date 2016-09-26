@@ -27,7 +27,7 @@ def findPeople():
 
 ## Insert documentos to target elasticsearch
 es_people = Elasticsearch(
-    ['http://4c9752a7100ba7cb95034a4d458e17f6.sa-east-1.aws.found.io:9200'],
+    ['http://104.197.92.45:9200'],
     http_auth=(username, password)
 )
 
@@ -40,9 +40,12 @@ es_target = Elasticsearch(
 for item in findPeople():
 	people = item['_source']
 
+	print ("processing %s login" % people['login'])
+
 	response = loadTechnologies(people['login'])
 	techs = response.json()
 
+	
 	if response.status_code != 200:
 		print ("%s not has login on Tech Gallery" % people['login'])
 		continue
@@ -54,9 +57,10 @@ for item in findPeople():
 			doc = {
 		       'login': people['login'],
 		       'name' : people['name'],		       
-		       'role' : people['role'],
-		       'city' : people['city'],
-		       'project' : people['contract'],
+		       'role' : people['role']['name'],
+		       'city' : people['cityBase']['acronym'],
+		       'project' : people['project']['name'],
+		       'area' : people['area']['name'],
 		       'technologyName': tech['technologyName'],
 		       'endorsementsCount' : tech['endorsementsCount'],
 		       'skillLevel' : tech['skillLevel']

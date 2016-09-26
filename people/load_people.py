@@ -29,7 +29,7 @@ def loadProjectFromHtml(login):
 
 def loadAllPeople():
 	headers = {'app_token': 'Blpy2nNXnjya'}
-	url = 'http://appgateway.cit:8080/cit/api/v2/people/'
+	url = 'https://wsgateway.cit.com.br/cit/api/v2/people/'
 	#print url
 	response = requests.get(url=url, headers=headers)
 	
@@ -41,7 +41,7 @@ def loadAllPeople():
 
 def loadPeopleAPI(login):
 	headers = {'app_token': 'Blpy2nNXnjya'}
-	url = 'http://appgateway.cit:8080/cit/api/v2/people/'+ login
+	url = 'https://wsgateway.cit.com.br/cit/api/v2/people/'+ login
 	#print url
 	response = requests.get(url=url, headers=headers)
 	
@@ -52,7 +52,7 @@ def loadPeopleAPI(login):
 
 ## Insert documentos to target elasticsearch
 es_target = Elasticsearch(
-    ['http://4c9752a7100ba7cb95034a4d458e17f6.sa-east-1.aws.found.io:9200'],
+    ['http://104.197.92.45:9200'],
     http_auth=('admin', 'admin')
 )
 
