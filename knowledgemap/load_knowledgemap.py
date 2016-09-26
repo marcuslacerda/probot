@@ -13,6 +13,8 @@ try:
 except ImportError:
     flags = None
 
+
+
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/sheets.googleapis.com-python-quickstart.json
 SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
@@ -48,12 +50,22 @@ def get_credentials():
         print('Storing credentials to ' + credential_path)
     return credentials
 
+
+# return float number. if exists ',' character, it will be change to '.'' 
+def formatFloat(value):
+    # 
+    if value.find(',') == -1: 
+        # convert string br to float
+        return float(value) 
+    else:
+        return float(value.replace(',','.'))
+        
+# https://developers.google.com/sheets/reference/rest/v4/spreadsheets/get
 def main():
     """Shows basic usage of the Sheets API.
 
-    Creates a Sheets API service object and prints the names and majors of
-    students in a sample spreadsheet:
-    https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+    Creates a Sheets API service object and prints lines of a sample spreadsheet:
+    https://docs.google.com/spreadsheets/d/1uzyIZf2r3DLKptr8ikeym1NNwiav-BwmtX3qbtDzhA4/edit
     """
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
@@ -62,20 +74,42 @@ def main():
     service = discovery.build('sheets', 'v4', http=http,
                               discoveryServiceUrl=discoveryUrl)
 
-    spreadsheetId = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
-    rangeName = 'Class Data!A2:E'
-    result = service.spreadsheets().values().get(
-        spreadsheetId=spreadsheetId, range=rangeName).execute()
-    values = result.get('values', [])
+    spreadsheetIds = '1uzyIZf2r3DLKptr8ikeym1NNwiav-BwmtX3qbtDzhA4,1bPKnCx9nhcpEHoY9iMsW3LSDe5cORlkV2eLmHr6Wl5Y'
 
-    if not values:
-        print('No data found.')
-    else:
-        print('Name, Major:')
-        for row in values:
-            # Print columns A and E, which correspond to indices 0 and 4.
-            print('%s, %s' % (row[0], row[4]))
+    for spreadsheetId in spreadsheetIds.split(','):
+        print ('processing spreadsheet: %s ' % spreadsheetId) 
+        rangeName = 'TC_Report!A2:K'
+        result = service.spreadsheets().values().get(
+            spreadsheetId=spreadsheetId, range=rangeName).execute()
+        values = result.get('values', [])
 
+        if not values:
+            print('No data found.')
+        else:
+            print('Name, Major:')
+            for row in values:
+                # Print columns A and E, which correspond to indices 0 and 4.
+                print('%s, %s' % (row[0], formatFloat(row[8])))
 
+  #var flow = Elasticsearch.cleanUp(session.flow); 
+  #Elasticsearch.deleteDataByQuery("knowledge", flow, {query : {match_all: {}}});
+  #Elasticsearch.pushDataToCluster("knowledge", flow, "knowledge", sheet);
+
+  #              doc = {
+  #                 'technology': row[0],
+  #                 'tower': row[1],            
+  #                 'contract': row[2],
+  #                 'flow': row[3],
+  #                 'gap': row[4],
+  #                 'weight' row[5]: ,
+  #                 'necessity': row[6]
+  #                 'requirement': row[7],
+  #                 'relevancy': row[8],
+  #                 'skill_index': row[9],
+  #                 'achieve' row[10]: 
+  #              }
+
+ 
 if __name__ == '__main__':
     main()
+    #print formatFloat('3,14')
