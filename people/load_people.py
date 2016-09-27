@@ -93,4 +93,4 @@ for hit in data:
 	#print doc
 	## create index doc
 	res = es_target.index(index="people", doc_type="login", body=doc, id=hit['login'])
-	print("Created documento ID %s para %s on %s" % (res['_id'], hit['login'], project))
+	print("Created documento ID %s para %s" % (res['_id'], hit['login']))
