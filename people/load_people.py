@@ -5,9 +5,10 @@ from elasticsearch import Elasticsearch
 
 import urlparse
 from lxml import html
+import sys
 
-username = raw_input("Enter Username for basic auth. Default mlacerda => ") or "mlacerda"
-password = raw_input("Enter Password. => ")
+username = raw_input("Enter Username for basic auth. Default mlacerda => ") or "mlacerda" or sys.argv[1]
+password = raw_input("Enter Password. => ") or sys.argv[2]
 #string_input = raw_input("Enter list of cities ids. Default BH,CPS,SP,RJ,HOU,NJ,NGB,ATL,CAL,TOK => ") or "BH,CPS,SP,RJ,HOU,NJ,NGB,ATL,CAL,TOK"
 
 def loadProjectFromHtml(login):
