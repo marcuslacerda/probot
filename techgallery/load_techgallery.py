@@ -1,13 +1,8 @@
 import requests
-from datetime import datetime
-from requests.auth import HTTPBasicAuth
 from elasticsearch import Elasticsearch
 
-import urlparse
-from lxml import html
-
-username = raw_input("Enter Username for basic auth. Default admin => ") or "admin"
-password = raw_input("Enter Password. Default admin => ") or "admin"
+#username = raw_input("Enter Username for basic auth. Default admin => ") or "admin"
+#password = raw_input("Enter Password. Default admin => ") or "admin"
 
 def loadTechnologies(login):
 	url = 'https://tech-gallery.appspot.com/_ah/api/rest/v1/profile?email='+ login + '@ciandt.com'
@@ -27,8 +22,7 @@ def findPeople():
 
 ## Insert documentos to target elasticsearch
 es_people = Elasticsearch(
-    ['http://104.197.92.45:9200'],
-    http_auth=(username, password)
+    ['http://104.197.92.45:9200']
 )
 
 ## Insert documentos to target elasticsearch
