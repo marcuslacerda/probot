@@ -53,8 +53,7 @@ def loadPeopleAPI(login):
 
 ## Insert documentos to target elasticsearch
 es_target = Elasticsearch(
-    ['http://104.197.92.45:9200'],
-    http_auth=('admin', 'admin')
+    ['http://104.197.92.45:9200']
 )
 
 count = 0
@@ -78,6 +77,11 @@ for hit in data:
 	count = count + 1
 	print ("Loading %s - %s  " % (hit['login'],count))
 	project = loadProjectFromHtml(hit['login'])
+
+	#birthday = 341193600000
+	#date = datetime.utcfromtimestamp(birthday / 1000)
+	#print date
+
 	doc = {
        'name' : hit['name'],
        'login': hit['login'],
