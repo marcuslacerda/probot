@@ -25,6 +25,11 @@ APPLICATION_NAME = 'Google Sheets API Python Quickstart'
 global TOTAL_ERRS
 TOTAL_ERRS = 0
 
+## Insert documentos to target elasticsearch
+es = Elasticsearch(
+    ['http://104.197.92.45:9200']
+)
+
 def get_credentials():
     """Gets valid user credentials from storage.
 
@@ -75,11 +80,57 @@ def findSpreadsheetIds():
     print ("exception %s : " % e)
 
 
-## Insert documentos to target elasticsearch
-es = Elasticsearch(
-    ['http://104.197.92.45:9200']
-)
-        
+
+def readSheetData(spreadsheetId, values):
+    items = []
+    for row in values:
+      # Print columns A and E, which correspond to indices 0 and 4.
+      doc = {
+         'technology': row[0],
+         'tower': row[1],            
+         'contract': row[2],
+         'flow': row[3],
+         'gap': int(row[4]),
+         'weight': int(row[5]),
+         'necessity': int(row[6]),
+         'requirement': int(row[7]),
+         'relevancy': formatFloat(row[8]),
+         'skill_index': formatFloat(row[9]),
+         'achieve': int(row[10]),
+         'sheet_id': spreadsheetId
+      }
+      items.append(doc)
+    return items
+
+
+def insertDocuments(documents):
+    for doc in documents:     
+      ## create index doc
+      res = es.index(index="knowledge", doc_type="tech", body=doc)
+      
+ 
+def deleteDocuments(search, number=10):     
+  # Start the initial search. 
+  hits=es.search(q=search, index="*knowledge", fields="_id",size=number,search_type="scan",scroll='5m')
+  print ('Deleting %s records... ' % hits['hits']['total'])
+  
+  # Now remove the results. 
+  while True:
+    try: 
+      # Git the next page of results. 
+      scroll=es.scroll( scroll_id=hits['_scroll_id'], scroll='5m', )
+
+      # We have results initialize the bulk variable. 
+      bulk = ""
+      
+      # Remove the variables. 
+      for result in scroll['hits']['hits']:
+        bulk = bulk + '{ "delete" : { "_index" : "' + str(result['_index']) + '", "_type" : "' + str(result['_type']) + '", "_id" : "' + str(result['_id']) + '" } }\n'
+      
+      es.bulk( body=bulk )
+    except Exception, e: 
+      break 
+    
 # https://developers.google.com/sheets/reference/rest/v4/spreadsheets/get
 def main():
     """Shows basic usage of the Sheets API.
@@ -117,73 +168,13 @@ def main():
               print(' %s technologies on this spreadsheet ' % len(items))
 
               q = "sheet_id:"+spreadsheetId
-              delete_docs(q)
+              deleteDocuments(q)
 
-              pushDataToElasticsearch(items)
+              insertDocuments(items)
         except Exception, e:
           print ("exception %s : " % e)
           global TOTAL_ERRS
           TOTAL_ERRS = TOTAL_ERRS + 1
-
-
-def readSheetData(spreadsheetId, values):
-    items = []
-    for row in values:
-      # Print columns A and E, which correspond to indices 0 and 4.
-      doc = {
-         'technology': row[0],
-         'tower': row[1],            
-         'contract': row[2],
-         'flow': row[3],
-         'gap': row[4],
-         'weight': row[5],
-         'necessity': row[6],
-         'requirement': row[7],
-         'relevancy': formatFloat(row[8]),
-         'skill_index': formatFloat(row[9]),
-         'achieve': row[10],
-         'sheet_id': spreadsheetId
-      }
-      items.append(doc)
-    return items
-
-
-def pushDataToElasticsearch(documents):
-    for doc in documents:     
-      ## create index doc
-      res = es.index(index="knowledge", doc_type="tech", body=doc)
-      
- 
-def delete_docs(search, number=10):   
-  
-  # Start the initial search. 
-  hits=es.search(
-    q=search,
-    index="*knowledge",
-    fields="_id",
-    size=number,
-    search_type="scan",
-    scroll='5m',
-  )
-  print ('DELETE %s ' % hits['hits']['total'])
-  # Now remove the results. 
-  while True:
-    try: 
-      # Git the next page of results. 
-      scroll=es.scroll( scroll_id=hits['_scroll_id'], scroll='5m', )
-
-      # We have results initialize the bulk variable. 
-      bulk = ""
-      
-      # Remove the variables. 
-      for result in scroll['hits']['hits']:
-        bulk = bulk + '{ "delete" : { "_index" : "' + str(result['_index']) + '", "_type" : "' + str(result['_type']) + '", "_id" : "' + str(result['_id']) + '" } }\n'
-      
-      es.bulk( body=bulk )
-
-    except Exception, e: 
-      break 
-    
 
 if __name__ == '__main__':
     main()
