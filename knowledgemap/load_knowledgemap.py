@@ -149,13 +149,9 @@ def readSheetData(spreadsheetId, values):
 
 
 def pushDataToElasticsearch(documents):
-    for doc in documents:
-      #var flow = Elasticsearch.cleanUp(session.flow); 
-      #Elasticsearch.deleteDataByQuery("knowledge2", flow, {query : {match_all: {}}});
-      #Elasticsearch.pushDataToCluster("knowledge2", flow, "knowledge", sheet);
-  
+    for doc in documents:     
       ## create index doc
-      res = es.index(index="knowledge2", doc_type="map", body=doc)
+      res = es.index(index="knowledge", doc_type="tech", body=doc)
       
  
 def delete_docs(search, number=10):   
@@ -163,7 +159,7 @@ def delete_docs(search, number=10):
   # Start the initial search. 
   hits=es.search(
     q=search,
-    index="*knowledge2",
+    index="*knowledge",
     fields="_id",
     size=number,
     search_type="scan",
